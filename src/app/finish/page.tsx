@@ -1,5 +1,5 @@
-import { InOrbitIcon } from "@/components/atoms/in-orbit-icon";
-import { Separator } from "@/components/ui/separator";
+import { InOrbitIcon } from '@/components/atoms/in-orbit-icon'
+import { Separator } from '@/components/ui/separator'
 
 export default function FinishPage() {
   return (
@@ -15,9 +15,7 @@ export default function FinishPage() {
 
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between text-xs text-zinc-400">
-          <span>
-            O sorteio será realizado no final do mini curso.
-          </span>
+          <span>O sorteio será realizado no final do mini curso.</span>
         </div>
       </div>
 

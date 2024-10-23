@@ -1,11 +1,16 @@
 'use server'
 
-import { createParticipant, CreateParticipantRequest } from '@/http/create-participant'
+import {
+  type CreateParticipantRequest,
+  createParticipant,
+} from '@/http/create-participant'
 // import { createGoalCompleted } from '@/http'
 // import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function sendParticipantFormAction(data: CreateParticipantRequest) {
+export async function sendParticipantFormAction(
+  data: CreateParticipantRequest
+) {
   const createdParticipant = await createParticipant(data)
   console.log('createdParticipant', createdParticipant)
 

@@ -1,19 +1,25 @@
 'use client'
 
-import { Controller, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupIndicator, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button } from "@/components/ui/button";
-import { sendParticipantFormAction } from '@/actions/sendParticipantFormAction';
-import { sendParticipantSchema } from '@/schemas/sendParticipantSchema';
-import type { sendParticipantFormData } from '@/@types/sendParticipantFormData';
-import type { ISelectOptions } from '@/@types/selectOptions';
+import type { ISelectOptions } from '@/@types/selectOptions'
+import type { sendParticipantFormData } from '@/@types/sendParticipantFormData'
+import { sendParticipantFormAction } from '@/actions/sendParticipantFormAction'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
+} from '@/components/ui/radio-group'
+import { sendParticipantSchema } from '@/schemas/sendParticipantSchema'
 
-export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOptions: ISelectOptions[] }) {
+export function ParticipantForm({
+  educationLevelsOptions,
+}: { educationLevelsOptions: ISelectOptions[] }) {
   const {
     register,
     control,
@@ -68,7 +74,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
           <Input
             id="dateOfBirth"
             autoFocus
-            type='date'
+            type="date"
             {...register('dateOfBirth')}
           />
 
@@ -80,7 +86,9 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="levelOfEducation">Qual é o seu nível de formação?</Label>
+          <Label htmlFor="levelOfEducation">
+            Qual é o seu nível de formação?
+          </Label>
           <Controller
             control={control}
             name="educationLevelId"
@@ -89,7 +97,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                 <RadioGroup
                   onValueChange={onChange}
                   value={String(value)}
-                  id='levelOfEducation'
+                  id="levelOfEducation"
                 >
                   {educationLevelsOptions.map(option => (
                     <RadioGroupItem
@@ -122,13 +130,8 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
             name="gender"
             render={({ field: { onChange, value } }) => {
               return (
-                <RadioGroup
-                  onValueChange={onChange}
-                  value={String(value)}
-                >
-                  <RadioGroupItem
-                    value={'male'}
-                  >
+                <RadioGroup onValueChange={onChange} value={String(value)}>
+                  <RadioGroupItem value={'male'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -137,9 +140,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                     </div>
                   </RadioGroupItem>
 
-                  <RadioGroupItem
-                    value={'female'}
-                  >
+                  <RadioGroupItem value={'female'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -148,9 +149,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                     </div>
                   </RadioGroupItem>
 
-                  <RadioGroupItem
-                    value={'other'}
-                  >
+                  <RadioGroupItem value={'other'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -159,7 +158,6 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                     </div>
                   </RadioGroupItem>
                 </RadioGroup>
-
               )
             }}
           />
@@ -177,13 +175,8 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
             name="hasStudiedProgramming"
             render={({ field: { onChange, value } }) => {
               return (
-                <RadioGroup
-                  onValueChange={onChange}
-                  value={String(value)}
-                >
-                  <RadioGroupItem
-                    value={'true'}
-                  >
+                <RadioGroup onValueChange={onChange} value={String(value)}>
+                  <RadioGroupItem value={'true'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -192,9 +185,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                     </div>
                   </RadioGroupItem>
 
-                  <RadioGroupItem
-                    value={'false'}
-                  >
+                  <RadioGroupItem value={'false'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -220,13 +211,8 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
             name="isUfalStudent"
             render={({ field: { onChange, value } }) => {
               return (
-                <RadioGroup
-                  onValueChange={onChange}
-                  value={String(value)}
-                >
-                  <RadioGroupItem
-                    value={'true'}
-                  >
+                <RadioGroup onValueChange={onChange} value={String(value)}>
+                  <RadioGroupItem value={'true'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
@@ -235,9 +221,7 @@ export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOpt
                     </div>
                   </RadioGroupItem>
 
-                  <RadioGroupItem
-                    value={'false'}
-                  >
+                  <RadioGroupItem value={'false'}>
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
                       <span className="text-zinc-300 text-sm font-medium leading-none">
