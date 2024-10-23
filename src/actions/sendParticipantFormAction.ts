@@ -1,28 +1,19 @@
 'use server'
 
+import { createParticipant, CreateParticipantRequest } from '@/http/create-participant'
 // import { createGoalCompleted } from '@/http'
 // import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function sendParticipantFormAction() {
-  // const createdGoalCompleted = await createGoalCompleted(goalId)
-  //   .then(data => {
-  //     return Promise.resolve({
-  //       data: data,
-  //       success: true,
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.error('error', err.message)
-  //     return Promise.resolve({
-  //       data: undefined,
-  //       success: false,
-  //     })
-  //   })
+export async function sendParticipantFormAction(data: CreateParticipantRequest) {
+  const createdParticipant = await createParticipant(data)
+  console.log('createdParticipant', createdParticipant)
 
-  // revalidateTag('week-summary')
-  // revalidateTag('pending-goals')
-  redirect('/finish')
-
-  // return createdGoalCompleted
+  if (createdParticipant.participant) {
+    redirect('/finish')
+  } else {
+    return {
+      error: true,
+    }
+  }
 }

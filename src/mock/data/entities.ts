@@ -1,6 +1,4 @@
-import type { IPendingGoals } from '@/@types/pendingGoals'
-
-export function mockPendingGoals(initialValue = {}): IPendingGoals {
+export function mockPendingGoals(initialValue = {}) {
   return {
     id: '1',
     title: 'Goal 1',

@@ -1,7 +1,18 @@
+import { ISelectOptions } from '@/@types/selectOptions'
 import { InOrbitIcon } from '@/components/atoms/in-orbit-icon'
 import { ParticipantForm } from '@/components/molecules/participant-form/ParticipantForm'
 import { Separator } from '@/components/ui/separator'
-export default function Home() {
+import { fetchEducationLevels, IEducationLevelsResponse } from '@/http/fetch-education-levels'
+export default async function Home() {
+  const educationsLevels = await fetchEducationLevels()
+
+  const educationsLevelsDTO = (educationsLevels: IEducationLevelsResponse): ISelectOptions[] => {
+    return educationsLevels.data.map(educationLevel => ({
+      label: educationLevel.levelName,
+      value: educationLevel.id,
+    })).sort((a, b) => a.label.localeCompare(b.label));
+  }
+
   return (
     <main className="py-10 max-w-[600px] px-5 mx-auto flex flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -25,7 +36,7 @@ export default function Home() {
 
 
       <div className="flex flex-col gap-6 h-full">
-        <ParticipantForm />
+        <ParticipantForm educationLevelsOptions={educationsLevelsDTO(educationsLevels)} />
       </div>
     </main>
   )

@@ -1,7 +1,6 @@
-import type { PendingGoalsResponse } from '@/http'
 import { mockPendingGoals } from './entities'
 
-export const pendingGoalsData: PendingGoalsResponse = {
+export const pendingGoalsData = {
   pendingGoals: [
     mockPendingGoals({
       id: '1',

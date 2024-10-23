@@ -1,17 +1,19 @@
 'use client'
 
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { RadioGroup, RadioGroupIndicator, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { sendParticipantFormAction } from '@/actions/sendParticipantFormAction';
 import { sendParticipantSchema } from '@/schemas/sendParticipantSchema';
-import { sendParticipantFormData } from '@/@types/sendParticipantFormData';
+import type { sendParticipantFormData } from '@/@types/sendParticipantFormData';
+import type { ISelectOptions } from '@/@types/selectOptions';
 
-export function ParticipantForm() {
+export function ParticipantForm({ educationLevelsOptions }: { educationLevelsOptions: ISelectOptions[] }) {
   const {
     register,
     control,
@@ -23,31 +25,20 @@ export function ParticipantForm() {
     defaultValues: {
       name: '',
       dateOfBirth: '',
-      levelOfEducation: 0,
+      educationLevelId: '',
       gender: '',
-      programming: false,
-      student: false,
+      hasStudiedProgramming: false,
+      isUfalStudent: false,
     },
   })
 
-  const levelOfEducationsOptions = [
-    { id: 0, label: "Ensino Fundamental (completo)", value: 1 },
-    { id: 1, label: "Ensino Fundamental (incompleto)", value: 2 },
-    { id: 2, label: "Ensino Médio (completo)", value: 3 },
-    { id: 3, label: "Ensino Médio (incompleto)", value: 4 },
-    { id: 4, label: "Curso Técnico (completo)", value: 5 },
-    { id: 5, label: "Curso Técnico (em andamento)", value: 6 },
-    { id: 6, label: "Superior (completo)", value: 7 },
-    { id: 7, label: "Superior (em andamento)", value: 8 },
-    { id: 8, label: "Pós-graduação (especialização)", value: 9 },
-    { id: 9, label: "Mestrado", value: 10 },
-    { id: 10, label: "Doutorado", value: 11 },
-    { id: 11, label: "Outro", value: 12 }
-  ]
-
   async function handleSubmitForm(values: sendParticipantFormData) {
-    console.log('values', values)
-    // await sendParticipantFormAction()
+    const createdParticipant = await sendParticipantFormAction(values)
+    console.log('createdParticipant', createdParticipant)
+
+    if (createdParticipant.error) {
+      toast.error('Ocorreu um erro ao enviar o formulário')
+    }
   }
 
   return (
@@ -92,7 +83,7 @@ export function ParticipantForm() {
           <Label htmlFor="levelOfEducation">Qual é o seu nível de formação?</Label>
           <Controller
             control={control}
-            name="levelOfEducation"
+            name="educationLevelId"
             render={({ field: { onChange, value } }) => {
               return (
                 <RadioGroup
@@ -100,9 +91,9 @@ export function ParticipantForm() {
                   value={String(value)}
                   id='levelOfEducation'
                 >
-                  {levelOfEducationsOptions.map(option => (
+                  {educationLevelsOptions.map(option => (
                     <RadioGroupItem
-                      key={option.id}
+                      key={option.value}
                       value={String(option.value)}
                     >
                       <div className="flex items-center gap-4">
@@ -117,9 +108,9 @@ export function ParticipantForm() {
               )
             }}
           />
-          {errors?.levelOfEducation && (
+          {errors?.educationLevelId && (
             <span className="text-red-400 text-sm">
-              {errors?.levelOfEducation?.message?.toString()}
+              {errors?.educationLevelId?.message?.toString()}
             </span>
           )}
         </div>
@@ -136,7 +127,7 @@ export function ParticipantForm() {
                   value={String(value)}
                 >
                   <RadioGroupItem
-                    value={'m'}
+                    value={'male'}
                   >
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
@@ -147,7 +138,7 @@ export function ParticipantForm() {
                   </RadioGroupItem>
 
                   <RadioGroupItem
-                    value={'f'}
+                    value={'female'}
                   >
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
@@ -158,7 +149,7 @@ export function ParticipantForm() {
                   </RadioGroupItem>
 
                   <RadioGroupItem
-                    value={'o'}
+                    value={'other'}
                   >
                     <div className="flex items-center gap-4">
                       <RadioGroupIndicator />
@@ -183,7 +174,7 @@ export function ParticipantForm() {
           <Label htmlFor="first">Você já estudou programação?</Label>
           <Controller
             control={control}
-            name="programming"
+            name="hasStudiedProgramming"
             render={({ field: { onChange, value } }) => {
               return (
                 <RadioGroup
@@ -215,9 +206,9 @@ export function ParticipantForm() {
               )
             }}
           />
-          {errors?.programming && (
+          {errors?.hasStudiedProgramming && (
             <span className="text-red-400 text-sm">
-              {errors?.programming?.message?.toString()}
+              {errors?.hasStudiedProgramming?.message?.toString()}
             </span>
           )}
         </div>
@@ -226,7 +217,7 @@ export function ParticipantForm() {
           <Label htmlFor="first">Você é estudante da UFAL?</Label>
           <Controller
             control={control}
-            name="student"
+            name="isUfalStudent"
             render={({ field: { onChange, value } }) => {
               return (
                 <RadioGroup
@@ -258,9 +249,9 @@ export function ParticipantForm() {
               )
             }}
           />
-          {errors?.student && (
+          {errors?.isUfalStudent && (
             <span className="text-red-400 text-sm">
-              {errors?.student?.message?.toString()}
+              {errors?.isUfalStudent?.message?.toString()}
             </span>
           )}
         </div>
