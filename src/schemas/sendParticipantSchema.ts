@@ -8,8 +8,8 @@ export const sendParticipantSchema = z.object({
   isUfalStudent: z.string().min(1, 'Selecione uma opção'),
   dateOfBirth: z.string().min(2, 'Selecione uma opção'),
 })
-  // .transform((data) => ({
-  //   ...data,
-  //   hasStudiedProgramming: Boolean(data.hasStudiedProgramming),
-  //   isUfalStudent: Boolean(data.isUfalStudent),
-  // }))
+// .transform((data) => ({
+//   ...data,
+//   hasStudiedProgramming: Boolean(data.hasStudiedProgramming),
+//   isUfalStudent: Boolean(data.isUfalStudent),
+// }))

@@ -1,5 +1,5 @@
-import { InOrbitIcon } from "@/components/atoms/in-orbit-icon";
-import { ParticipantList } from "@/components/organisms/participant-list";
+import { InOrbitIcon } from '@/components/atoms/in-orbit-icon'
+import { ParticipantList } from '@/components/organisms/participant-list'
 
 export default function ParticipantsPage() {
   return (
@@ -7,9 +7,7 @@ export default function ParticipantsPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <InOrbitIcon />
-          <h1 className="text-lg font-semibold">
-            Lista de Participantes
-          </h1>
+          <h1 className="text-lg font-semibold">Lista de Participantes</h1>
         </div>
       </div>
 

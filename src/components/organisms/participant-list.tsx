@@ -1,4 +1,4 @@
-import { fetchParticipants } from "@/http/fetch-participants"
+import { fetchParticipants } from '@/http/fetch-participants'
 
 export async function ParticipantList() {
   const participants = await fetchParticipants()
@@ -9,7 +9,9 @@ export async function ParticipantList() {
       <thead>
         <tr className="bg-zinc-100">
           <th className="border border-zinc-900 p-2 text-zinc-900">Nome</th>
-          <th className="border border-zinc-900 p-2 text-zinc-900">Data de nascimento</th>
+          <th className="border border-zinc-900 p-2 text-zinc-900">
+            Data de nascimento
+          </th>
         </tr>
       </thead>
 
@@ -17,7 +19,9 @@ export async function ParticipantList() {
         {participants.data.map(participant => (
           <tr key={participant.id}>
             <td className="border border-zinc-900 p-2">{participant.name}</td>
-            <td className="border border-zinc-900 p-2">{participant.dateOfBirth}</td>
+            <td className="border border-zinc-900 p-2">
+              {participant.dateOfBirth}
+            </td>
           </tr>
         ))}
       </tbody>
