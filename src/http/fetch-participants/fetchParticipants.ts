@@ -12,7 +12,7 @@ export function fetchParticipants(): Promise<IParticipantsResponse> {
   const oneMinute = 60 * 1000
 
   const response: Promise<IParticipantsResponse> = fetch(
-    `${env.NEXT_PUBLIC_API_URL}/participants?limit=150`,
+    `${env.API_URL}/participants?limit=150`,
     {
       next: {
         revalidate: oneMinute * 60,

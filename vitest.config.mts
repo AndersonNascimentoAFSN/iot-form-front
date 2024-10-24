@@ -21,7 +21,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
     },
     env: {
-      NEXT_PUBLIC_API_URL: 'http://localhost:3333',
+      API_URL: 'http://localhost:3333',
     },
   },
 })

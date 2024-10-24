@@ -11,17 +11,17 @@ export interface CreateParticipantRequest {
 
 export interface CreateParticipantResponse {
   participant:
-    | {
-        id: string
-        name: string
-        dateOfBirth: string
-        gender: string
-        hasStudiedProgramming: string
-        isUfalStudent: string
-        createdAt: string
-        educationLevelId: string
-      }
-    | undefined
+  | {
+    id: string
+    name: string
+    dateOfBirth: string
+    gender: string
+    hasStudiedProgramming: string
+    isUfalStudent: string
+    createdAt: string
+    educationLevelId: string
+  }
+  | undefined
 }
 
 export function createParticipant({
@@ -33,7 +33,7 @@ export function createParticipant({
   isUfalStudent,
 }: CreateParticipantRequest): Promise<CreateParticipantResponse> {
   const response: Promise<CreateParticipantResponse> = fetch(
-    `${env.NEXT_PUBLIC_API_URL}/participants`,
+    `${env.API_URL}/participants`,
     {
       method: 'POST',
       headers: {

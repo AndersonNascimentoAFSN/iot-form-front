@@ -9,7 +9,7 @@ export function fetchEducationLevels(): Promise<IEducationLevelsResponse> {
   const oneMinute = 60 * 1000
 
   const response: Promise<IEducationLevelsResponse> = fetch(
-    `${env.NEXT_PUBLIC_API_URL}/education-levels`,
+    `${env.API_URL}/education-levels`,
     {
       next: {
         revalidate: oneMinute * 60,
