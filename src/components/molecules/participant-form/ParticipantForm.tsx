@@ -33,16 +33,19 @@ export function ParticipantForm({
       dateOfBirth: '',
       educationLevelId: '',
       gender: '',
-      hasStudiedProgramming: false,
-      isUfalStudent: false,
+      hasStudiedProgramming: '',
+      isUfalStudent: '',
     },
   })
 
   async function handleSubmitForm(values: sendParticipantFormData) {
-    const createdParticipant = await sendParticipantFormAction(values)
-    console.log('createdParticipant', createdParticipant)
+    const createdParticipant = await sendParticipantFormAction({
+      ...values,
+      hasStudiedProgramming: Boolean(values?.hasStudiedProgramming),
+      isUfalStudent: Boolean(values?.isUfalStudent),
+    })
 
-    if (createdParticipant.error) {
+    if (createdParticipant?.error) {
       toast.error('Ocorreu um erro ao enviar o formulário')
     }
   }

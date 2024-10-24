@@ -4,17 +4,19 @@ import {
   type CreateParticipantRequest,
   createParticipant,
 } from '@/http/create-participant'
-// import { createGoalCompleted } from '@/http'
 // import { revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function sendParticipantFormAction(
   data: CreateParticipantRequest
 ) {
-  const createdParticipant = await createParticipant(data)
-  console.log('createdParticipant', createdParticipant)
+  const createdParticipant = await createParticipant({
+    ...data,
+    hasStudiedProgramming: Boolean(data?.hasStudiedProgramming),
+    isUfalStudent: Boolean(data?.isUfalStudent),
+  })
 
-  if (createdParticipant.participant) {
+  if (createdParticipant?.participant) {
     redirect('/finish')
   } else {
     return {
