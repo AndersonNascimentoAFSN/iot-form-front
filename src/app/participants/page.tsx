@@ -1,4 +1,5 @@
 import { InOrbitIcon } from '@/components/atoms/in-orbit-icon'
+import { ParticipantsTable } from '@/components/organisms/participants-table/ParticipantTable'
 import { ParticipantList } from '@/components/organisms/participant-list'
 
 export default function ParticipantsPage() {
@@ -12,6 +13,8 @@ export default function ParticipantsPage() {
       </div>
 
       <ParticipantList />
+
+      {/* <ParticipantsTable /> */}
     </main>
   )
 }
