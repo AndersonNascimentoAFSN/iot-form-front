@@ -102,7 +102,7 @@ export function ParticipantForm({
                   value={String(value)}
                   id="levelOfEducation"
                 >
-                  {educationLevelsOptions.map(option => (
+                  {educationLevelsOptions?.map(option => (
                     <RadioGroupItem
                       key={option.value}
                       value={String(option.value)}

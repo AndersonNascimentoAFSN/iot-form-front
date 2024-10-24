@@ -12,12 +12,12 @@ export default async function Home() {
   const educationsLevelsDTO = (
     educationsLevels: IEducationLevelsResponse
   ): ISelectOptions[] => {
-    return educationsLevels.data
+    return educationsLevels?.data
       .map(educationLevel => ({
-        label: educationLevel.levelName,
-        value: educationLevel.id,
+        label: educationLevel?.levelName,
+        value: educationLevel?.id,
       }))
-      .sort((a, b) => a.label.localeCompare(b.label))
+      .sort((a, b) => a?.label?.localeCompare(b?.label))
   }
 
   return (
