@@ -10,14 +10,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import type { IParticipantResponse } from '@/http/get-participant/getParticipant'
+import type { IParticipantsResponse } from '@/http/fetch-participants'
 
-export function ParticipantTable({
-  participant,
-}: { participant: IParticipantResponse }) {
+export function ParticipantsTable({
+  participants,
+}: { participants: IParticipantsResponse }) {
   return (
     <Table>
-      <TableCaption>Dados do participante</TableCaption>
+      <TableCaption>Lista dos participantes</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Nome</TableHead>
@@ -25,13 +25,20 @@ export function ParticipantTable({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {participant?.data?.map(participant => (
+        {participants?.data?.map(participant => (
           <TableRow key={participant.id}>
             <TableCell className="font-medium">{participant.name}</TableCell>
             <TableCell>{participant.dateOfBirth}</TableCell>
           </TableRow>
         ))}
       </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell>Total de participantes</TableCell>
+          <TableCell className="text-right">{participants?.total}</TableCell>
+        </TableRow>
+      </TableFooter>
     </Table>
   )
 }
+// colSpan={3} is used to make the cell span 3 columns
