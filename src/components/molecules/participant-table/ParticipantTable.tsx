@@ -1,0 +1,43 @@
+import { IParticipants } from '@/@types/participants'
+
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import type { IParticipantsResponse } from '@/http/fetch-participants'
+
+export function ParticipantTable({
+  participants,
+}: { participants: IParticipantsResponse }) {
+  return (
+    <Table>
+      <TableCaption>Lista dos participantes</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Nome</TableHead>
+          <TableHead>Data de nascimento</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {participants?.data?.map(participant => (
+          <TableRow key={participant.id}>
+            <TableCell className="font-medium">{participant.name}</TableCell>
+            <TableCell>{participant.dateOfBirth}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Total de participantes</TableCell>
+          <TableCell className="text-right">{participants?.total}</TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
+  )
+}

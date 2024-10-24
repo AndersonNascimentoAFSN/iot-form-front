@@ -3,13 +3,16 @@ import { env } from '@/env'
 
 export interface IParticipantsResponse {
   data: IParticipants[]
+  limit: number
+  page: number
+  total: number
 }
 
 export function fetchParticipants(): Promise<IParticipantsResponse> {
   const oneMinute = 60 * 1000
 
   const response: Promise<IParticipantsResponse> = fetch(
-    `${env.NEXT_PUBLIC_API_URL}/participants`,
+    `${env.NEXT_PUBLIC_API_URL}/participants?limit=150`,
     {
       next: {
         revalidate: oneMinute * 60,
@@ -18,7 +21,6 @@ export function fetchParticipants(): Promise<IParticipantsResponse> {
     }
   )
     .then(response => response.json())
-    .then((data: IParticipantsResponse) => data)
     .catch(error => {
       console.error('error', error.message)
       return Promise.resolve({
