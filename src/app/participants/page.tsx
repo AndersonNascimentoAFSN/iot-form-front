@@ -1,6 +1,6 @@
 import { InOrbitIcon } from '@/components/atoms/in-orbit-icon'
-import { ParticipantsTable } from '@/components/organisms/participants-table/ParticipantTable'
 import { ParticipantList } from '@/components/organisms/participant-list'
+import { ParticipantsTable } from '@/components/organisms/participants-table/ParticipantTable'
 
 export default function ParticipantsPage() {
   return (

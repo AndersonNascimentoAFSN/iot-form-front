@@ -10,7 +10,8 @@ export async function drawParticipantsFormAction({
 }) {
   const newHeaders = new Headers()
   newHeaders.append('Content-Type', 'application/json')
-  if (numberOfParticipants) newHeaders.append('numberOfParticipants', numberOfParticipants)
+  if (numberOfParticipants)
+    newHeaders.append('numberOfParticipants', numberOfParticipants)
 
   const headersList = headers()
   const host = headersList.get('host')
