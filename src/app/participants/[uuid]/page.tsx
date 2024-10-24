@@ -6,7 +6,9 @@ import { getParticipant } from '@/http/get-participant/getParticipant'
 import Link from 'next/link'
 // import Link from 'next/link'
 
-export default async function FinishPage({ params }: { params: { uuid: string } }) {
+export default async function FinishPage({
+  params,
+}: { params: { uuid: string } }) {
   const participant = await getParticipant({ uuid: params.uuid })
 
   return (
@@ -35,7 +37,6 @@ export default async function FinishPage({ params }: { params: { uuid: string } 
         </Link>
       </div> */}
 
-
       <div className="flex items-center justify-between text-xs text-zinc-400">
         <Link href="/participants">
           <span>Clique aqui para ver quem está participando do sorteio</span>
@@ -44,7 +45,9 @@ export default async function FinishPage({ params }: { params: { uuid: string } 
 
       <Separator />
 
-      <span className="text-xs text-zinc-400">Obs.: O sorteio será realizado no final do mini curso.</span>
+      <span className="text-xs text-zinc-400">
+        Obs.: O sorteio será realizado no final do mini curso.
+      </span>
 
       <Confetti />
     </main>

@@ -4,7 +4,7 @@ import {
   type CreateParticipantRequest,
   createParticipant,
 } from '@/http/create-participant'
-import { revalidateTag, revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function sendParticipantFormAction(

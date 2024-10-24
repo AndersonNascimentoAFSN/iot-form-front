@@ -1,17 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import ReactCanvasConfetti from 'react-canvas-confetti/dist/presets/realistic';
+import { useEffect, useState } from 'react'
+import ReactCanvasConfetti from 'react-canvas-confetti/dist/presets/realistic'
 
 export function Confetti() {
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
-      setHide(false);
+      setHide(false)
     }, 3000)
   }, [])
-
 
   return (
     <>
@@ -23,7 +22,7 @@ export function Confetti() {
             width: '100%',
             height: '100%',
             top: 0,
-            left: 0
+            left: 0,
           }}
           autorun={{ speed: 0.3 }}
         />
