@@ -2,7 +2,6 @@ import { fetchParticipants } from '@/http/fetch-participants'
 
 export async function ParticipantList() {
   const participants = await fetchParticipants()
-  console.log(participants)
 
   return (
     <table className="w-full border-collapse border border-zinc-200">
