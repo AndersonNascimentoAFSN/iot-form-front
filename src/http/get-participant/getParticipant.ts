@@ -29,7 +29,13 @@ export function getParticipant({
   }
 
   const response: Promise<IParticipantResponse> = fetch(
-    `${env.API_URL}/participant?${queryParams.toString()}`
+    `${env.API_URL}/participant?${queryParams.toString()}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
   )
     .then(response => response.json())
     .catch(error => {

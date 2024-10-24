@@ -13,8 +13,16 @@ export interface IParticipantSummaryResponse {
   }>
 }
 export function getParticipantSummary(): Promise<IParticipantSummaryResponse> {
+  const oneMinute = 60 * 1000
+
   const response: Promise<IParticipantSummaryResponse> = fetch(
-    `${env.API_URL}/summary-participants`
+    `${env.API_URL}/summary-participants`,
+    {
+      next: {
+        revalidate: oneMinute * 60,
+        tags: ['summary-participants'],
+      },
+    }
   )
     .then(response => response.json())
     .catch(error => {

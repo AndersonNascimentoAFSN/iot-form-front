@@ -18,7 +18,9 @@ export async function sendParticipantFormAction(
 
   if (createdParticipant?.participant) {
     revalidateTag('participants')
+    revalidateTag('summary-participants')
     revalidatePath('/participants')
+    revalidatePath('/participants/summary')
     redirect(`/participants/${createdParticipant?.participant.id}`)
   } else {
     return {
