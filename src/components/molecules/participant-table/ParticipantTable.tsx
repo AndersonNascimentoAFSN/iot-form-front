@@ -34,10 +34,11 @@ export function ParticipantTable({
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>Total de participantes</TableCell>
+          <TableCell>Total de participantes</TableCell>
           <TableCell className="text-right">{participants?.total}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>
   )
 }
+// colSpan={3} is used to make the cell span 3 columns
